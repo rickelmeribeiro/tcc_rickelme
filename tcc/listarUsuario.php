@@ -18,6 +18,7 @@ include_once "./funcoes/funcoes.php";
     <link rel="stylesheet" href="./css/tabela.css">
     <link rel="stylesheet" href="./css/btngp.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/pesquisa.css">
 
     <title>Listar Usuários</title>
 </head>
@@ -29,8 +30,36 @@ include_once "./funcoes/funcoes.php";
         <p class="mb-0" style="font-family: 'Segoe UI Light',sans-serif">Abaixo Encontra-se a Tabela Geral.</p>
     </div>
 </div>
+<form method="post" name="frmpesquisa" id="frmpesquisa">
 
+    <div class="row  mb-4" style="margin-left: 29%">
+        <div class="col-md-3">
+            <div class="form-group has-search">
+                <input type="text" id="pesquisa_nome" autocomplete="off" required class="form-control rounded-5 formedit placer"
+                       placeholder="Pesquise Pelo Nome...">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group has-search">
+                <input type="text" id="pesquisa_cpf" onkeydown="fMasc(this, mCPF);" required autocomplete="off"
+                       maxlength="14" class="form-control rounded-5 formedit placer cpf_usuario" placeholder="Pesquise Pelo CPF...">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btnn mb-2 bg-secondary rounded-5" style="margin-bottom: 20px">
 
+                <div class="sign">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Pesquisar</title>
+                        <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                    </svg>
+                </div>
+
+                <div class="text" style="font-family: 'Segoe UI Light',sans-serif">Pesquisar</div>
+            </button>
+        </div>
+    </div>
+
+</form>
 <table class="container rounded-5">
     <thead>
     <tr class="text-white" style="font-family: 'Segoe UI Light',sans-serif">
@@ -119,12 +148,15 @@ include_once "./funcoes/funcoes.php";
                                         <div class="mb-3">
                                             <label for="nome_usuario" class="form-label">Nome</label>
                                             <input type="text" class="form-control formedit placer rounded-5"
-                                                   id="nome_usuario" name="nome_usuario" placeholder="Seu Nome" autocomplete="off" required>
+                                                   id="nome_usuario" name="nome_usuario" placeholder="Seu Nome"
+                                                   autocomplete="off" required>
                                         </div>
                                         <div class="mb-4">
                                             <label for="cpf_usuario" class="form-label">CPF</label>
-                                            <input autocomplete="off" type="text" onkeydown="fMasc(this, mCPF);" class="form-control cpf_usuario formedit placer rounded-5"
-                                                   id="cpf_usuario" name="cpf_usuario" maxlength="14" required placeholder="000.000.000-00">
+                                            <input autocomplete="off" type="text" onkeydown="fMasc(this, mCPF);"
+                                                   class="form-control cpf_usuario formedit placer rounded-5"
+                                                   id="cpf_usuario" name="cpf_usuario" maxlength="14" required
+                                                   placeholder="000.000.000-00">
                                         </div>
                                         <button type="submit" class="btn text-white mt-3 rounded-5"
                                                 style="background-color: #3a3b4a;margin-left: 34%" id="saveChangesBtn">
@@ -151,12 +183,13 @@ include_once "./funcoes/funcoes.php";
                     <div class="modal fade" style="background-color: #313348" id="ModalVerMais<?php echo $idusuario ?>"
                          tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
-                        <div class="modal-dialog rounded-5  modal-dialog-centered">
+                        <div class="modal-dialog modal-lg rounded-5  modal-dialog-centered">
                             <div class="modal-content rounded-5 ">
                                 <div class="modal-body rounded-5" style="background-color: #252636">
                                     <?php if ($fotousuario != null): ?>
-                                        <img style="margin-left: 40%" src="data:<?php echo $tipoConteudo ?>;base64,<?php echo base64_encode($fotousuario) ?>"
-                                             width="100" height="100" alt="<?php echo $idusuario ?>"
+                                        <img style=";width: 100%;margin-right: 25%"
+                                             src="data:<?php echo $tipoConteudo ?>;base64,<?php echo base64_encode($fotousuario) ?>"
+                                             alt="<?php echo $idusuario ?>"
                                              title="<?php echo $idusuario ?>">
                                     <?php else: ?>
                                         Sem Foto

@@ -15,6 +15,7 @@ include_once "./funcoes/funcoes.php";
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/tabela.css">
     <link rel="stylesheet" href="./css/btngp.css">
+    <link rel="stylesheet" href="./css/pesquisa.css">
 
     <title>Listar Registros</title>
 </head>
@@ -25,6 +26,42 @@ include_once "./funcoes/funcoes.php";
         <p class="mb-0" style="font-family: 'Segoe UI Light',sans-serif">Abaixo Encontra-se a Tabela Geral.</p>
     </div>
 </div>
+
+<form method="post" name="frmpesquisaregistro" id="frmpesquisaregistro">
+    
+    <div class="row mb-4" style="margin-left: 25%">
+        <div class="col-md-2">
+            <div class="form-group has-search">
+                <label for="pesquisa_data" style="font-family: 'Segoe UI Light',sans-serif;margin-left: 30%" class="text-white">Data Inicial:</label>
+                <input type="date" style="font-family: 'Segoe UI Light',sans-serif" required id="pesquisa_data" class="form-control rounded-5 formedit placer">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group has-search">
+                <label for="pesquisa_data" style="font-family: 'Segoe UI Light',sans-serif;margin-left: 30%" class="text-white">Data Final:</label>
+                <input type="date" style="font-family: 'Segoe UI Light',sans-serif" required id="pesquisa_data" class="form-control rounded-5 formedit placer">
+            </div>
+        </div>
+        <div class="col-md-3 mt-4">
+            <div class="form-group has-search">
+                <input type="text" id="pesquisa_cpf" onkeydown="fMasc(this, mCPF);" required autocomplete="off"
+                       maxlength="14" class="form-control rounded-5 formedit placer cpf_usuario" placeholder="Pesquise Pelo CPF...">
+            </div>
+        </div>
+        <div class="col-md-2 mt-4">
+            <button class="btnn mb-2 bg-secondary rounded-5" style="margin-bottom: 20px">
+
+                <div class="sign">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Pesquisar</title>
+                        <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                    </svg>
+                </div>
+
+                <div class="text" style="font-family: 'Segoe UI Light',sans-serif">Pesquisar</div>
+            </button>
+        </div>
+    </div>
+</form>
 
 
 <table class="container rounded-5">
@@ -63,7 +100,8 @@ include_once "./funcoes/funcoes.php";
                     <!---->
                     <!---->
                     <!---->
-                    <button onclick="abrirModalJsVerMais('<?php echo $idregistro?>','id','ModalVerMais<?php echo $idregistro ?>','A')" class="Btngp bg-warning">
+                    <button onclick="abrirModalJsVerMais('<?php echo $idregistro ?>','id','ModalVerMais<?php echo $idregistro ?>','A')"
+                            class="Btngp bg-warning">
 
                         <div class="sign">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Ver Mais Dados</title>
@@ -76,12 +114,13 @@ include_once "./funcoes/funcoes.php";
                     <div class="modal fade" style="background-color: #313348" id="ModalVerMais<?php echo $idregistro ?>"
                          tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
-                        <div class="modal-dialog rounded-5  modal-dialog-centered">
+                        <div class="modal-dialog modal-lg rounded-5  modal-dialog-centered">
                             <div class="modal-content rounded-5 ">
                                 <div class="modal-body rounded-5" style="background-color: #252636">
                                     <?php if ($fotoregistro != null): ?>
-                                        <img style="margin-left: 40%" src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
-                                             width="100" height="100" alt="<?php echo $idregistro ?>"
+                                        <img style="margin-right: 25%;width: 100%"
+                                             src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
+                                             alt="<?php echo $idregistro ?>"
                                              title="<?php echo $idregistro ?>">
                                     <?php else: ?>
                                         Sem Foto
