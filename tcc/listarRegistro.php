@@ -16,20 +16,17 @@ include_once "./funcoes/funcoes.php";
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/tabela.css">
     <link rel="stylesheet" href="./css/btngp.css">
-    <link rel="stylesheet" href="./css/pesquisa.css">
-
-
 
     <title>Listar Registros</title>
 </head>
 
 <body>
-    <div class="welcome mb-5">
-        <div class="content rounded-3 p-3">
-            <h1 class="fs-3" style="font-family: 'Segoe UI Light',sans-serif">Este é o Menu de Registros!</h1>
-            <p class="mb-0" style="font-family: 'Segoe UI Light',sans-serif">Abaixo Encontra-se a Tabela Geral.</p>
-        </div>
+<div class="welcome mb-5">
+    <div class="content rounded-3 p-3">
+        <h1 class="fs-3" style="font-family: 'Segoe UI Light',sans-serif">Este é o Menu de Registros!</h1>
+        <p class="mb-0" style="font-family: 'Segoe UI Light',sans-serif">Abaixo Encontra-se a Tabela Geral.</p>
     </div>
+</div>
 
     <form method="post" name="frmpesquisaregistro" id="frmpesquisaregistro">
 
@@ -95,25 +92,23 @@ include_once "./funcoes/funcoes.php";
 
                     $tipoFoto = "image/png";
 
-                    ?>
-                    <tr class="text-white" style="font-family: 'Segoe UI Light',sans-serif">
-                        <td><?php echo $idregistro ?></td>
-                        <td><?php echo $dataregistro ?></td>
-                        <td>
-                            <?php if ($fotoregistro != null): ?>
-                                <img src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
-                                    width="100" height="100" title="<?php echo $idregistro ?>" alt="<?php echo $idregistro ?>">
-                            <?php else: ?>
-                                Sem Foto
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <!---->
-                            <!---->
-                            <!---->
-                            <button
-                                onclick="abrirModalJsVerMais('<?php echo $idregistro ?>','id','ModalVerMais<?php echo $idregistro ?>','A')"
-                                class="Btngp bg-warning">
+            ?>
+            <tr class="text-white" style="font-family: 'Segoe UI Light',sans-serif">
+                <td><?php echo $idregistro ?></td>
+                <td><?php echo $dataregistro ?></td>
+                <td>
+                    <?php if ($fotoregistro != null): ?>
+                        <img src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
+                             width="100" height="100" title="<?php echo $idregistro ?>" alt="<?php echo $idregistro ?>">
+                    <?php else: ?>
+                        Sem Foto
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <!---->
+                    <!---->
+                    <!---->
+                    <button onclick="abrirModalJsVerMais('<?php echo $idregistro?>','id','ModalVerMais<?php echo $idregistro ?>','A')" class="Btngp bg-warning">
 
                                 <div class="sign">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -123,50 +118,50 @@ include_once "./funcoes/funcoes.php";
                                     </svg>
                                 </div>
 
-                                <div class="text" style="font-family: 'Segoe UI Light',sans-serif">Ver Mais</div>
-                            </button>
-                            <div class="modal fade" style="background-color: #313348" id="ModalVerMais<?php echo $idregistro ?>"
-                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog rounded-5  modal-dialog-centered">
-                                    <div class="modal-content rounded-5 ">
-                                        <div class="modal-body rounded-5" style="background-color: #252636">
-                                            <?php if ($fotoregistro != null): ?>
-                                                <img style="margin-left: 40%"
-                                                    src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
-                                                    width="100" height="100" alt="<?php echo $idregistro ?>"
-                                                    title="<?php echo $idregistro ?>">
-                                            <?php else: ?>
-                                                Sem Foto
-                                            <?php endif; ?>
-                                            <input type="hidden" id="id_registro" name="id_registro">
-                                            <div class="mb-3">
-                                                <label for="id_regoistro" class="form-label">ID</label>
-                                                <input type="text" class="form-control formvermais rounded-5" id="id_regoistro"
-                                                    name="id_regoistro" value="<?php echo $idregistro ?>" disabled>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="data_registro" class="form-label">Data</label>
-                                                <input type="text" class="form-control formvermais rounded-5" id="data_registro"
-                                                    name="data_registro" value="<?php echo $dataregistro ?>" disabled>
-                                            </div>
-                                        </div>
+                        <div class="text" style="font-family: 'Segoe UI Light',sans-serif">Ver Mais</div>
+                    </button>
+                    <div class="modal fade" style="background-color: #313348" id="ModalVerMais<?php echo $idregistro ?>"
+                         tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog rounded-5  modal-dialog-centered">
+                            <div class="modal-content rounded-5 ">
+                                <div class="modal-body rounded-5" style="background-color: #252636">
+                                    <?php if ($fotoregistro != null): ?>
+                                        <img style="margin-left: 40%" src="data:<?php echo $tipoFoto ?>;base64,<?php echo base64_encode($fotoregistro) ?>"
+                                             width="100" height="100" alt="<?php echo $idregistro ?>"
+                                             title="<?php echo $idregistro ?>">
+                                    <?php else: ?>
+                                        Sem Foto
+                                    <?php endif; ?>
+                                    <input type="hidden" id="id_registro" name="id_registro">
+                                    <div class="mb-3">
+                                        <label for="id_regoistro" class="form-label">ID</label>
+                                        <input type="text" class="form-control formvermais rounded-5" id="id_regoistro"
+                                               name="id_regoistro" value="<?php echo $idregistro ?>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data_registro" class="form-label">Data</label>
+                                        <input type="text" class="form-control formvermais rounded-5" id="data_registro"
+                                               name="data_registro" value="<?php echo $dataregistro ?>" disabled>
                                     </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                    <?php
-                }
-            } else {
-                ?>
-                <tr>
-                    <th scope="row" colspan="5" class="text-center text-white">Dados Não Encontrados!</th>
-                </tr>
-                <?php
-            }
-            ?>
-        </tbody>
-    </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <?php
+        }
+    } else {
+        ?>
+        <tr>
+            <th scope="row" colspan="5" class="text-center text-white">Dados Não Encontrados!</th>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
 
     <script src="./funcoes/funcoes.js"></script>
 </body>

@@ -32,7 +32,11 @@ include_once "./funcoes/funcoes.php";
                 <input id="senha" type="password" class="form-input placee" placeholder="Senha" maxlength="8" autocomplete="off" required="">
             </div>
             <div class="form-field d-grid gap-2 ">
+<<<<<<< HEAD
                 <button type="button" id="Botaologin" onclick="fazerLogin();">
+=======
+                <button type="button" id="BotaoLogin" onclick="fazerLogin();">
+>>>>>>> 67e786040281d854edcc3cedf6a537b0e976bf33
                     Entrar
                 </button>
             </div>

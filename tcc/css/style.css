@@ -16,8 +16,13 @@
     color: white !important;
 }
 
+
 .placer::placeholder{
+    font-family: "Segoe UI Light",sans-serif !important;
     color: gray !important;
+}
+.placer:placeholder-shown{
+    font-family: "Segoe UI Light",sans-serif !important;
 }
 
 .formvermais{
