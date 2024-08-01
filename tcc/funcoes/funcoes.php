@@ -780,20 +780,22 @@ function Excluir_Usuario($id)
     }
 }
 
-function editUsuario($nome, $cpf, $idusuario)
+function editUsuario($nome, $cpf, $idusuario, $statuss)
 {
     $conn = conectar();
     try {
         $conn->beginTransaction();
 
 
-        $sql = "UPDATE usuario SET nomeUsuario = :nomeUsuario, cpf = :cpf WHERE idusuario = :idusuario";
+        $sql = "UPDATE usuario SET nomeUsuario = :nomeUsuario, cpf = :cpf, ativo = :statuss WHERE idusuario = :idusuario";
         $stmt = $conn->prepare($sql);
 
 
         $stmt->bindParam(':nomeUsuario', $nome);
         $stmt->bindParam(':cpf', $cpf);
         $stmt->bindParam(':idusuario', $idusuario);
+        $stmt->bindParam(':statuss', $statuss);
+
 
         $stmt->execute();
         $conn->commit();

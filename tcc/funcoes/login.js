@@ -31,7 +31,7 @@ function fazerLogin() {
             showConfirmButton: false,
         });
         return;
-    }else if (senha.length < 8) {
+    } else if (senha.length < 8) {
         somnao.play();
         Swal.fire({
             icon: "error",
@@ -39,7 +39,7 @@ function fazerLogin() {
             showConfirmButton: false,
         });
         return;
-    } else{
+    } else {
 
     }
     fetch("login_back.php", {
@@ -84,11 +84,11 @@ function fazerLogin() {
 const cliqueemail = new Audio('./som/clique.wav');
 const cliquesenha = new Audio('./som/clique.wav');
 
-document.getElementById("email").addEventListener('click', function (){
+document.getElementById("email").addEventListener('click', function () {
     cliqueemail.currentTime = 0;
     cliqueemail.play();
 });
-document.getElementById("senha").addEventListener('click', function (){
+document.getElementById("senha").addEventListener('click', function () {
     cliquesenha.currentTime = 0;
     cliquesenha.play();
 });
@@ -98,15 +98,25 @@ document.getElementById("senha").addEventListener('click', function (){
 const somtecla = new Audio('./som/digitacao.wav');
 
 const input = document.getElementById('email');
-input.addEventListener('keydown', function (){
+input.addEventListener('keydown', function () {
     somtecla.currentTime = 0;
     somtecla.play();
 });
 
 const inputsenha = document.getElementById('senha');
-inputsenha.addEventListener('keydown', function (){
+inputsenha.addEventListener('keydown', function () {
     somtecla.currentTime = 0;
     somtecla.play();
 });
 
 
+
+function verificarTecla(event) {
+    if (event.key === 'Enter') {
+        document.getElementById('Botaologin').click();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('keydown', verificarTecla);
+});

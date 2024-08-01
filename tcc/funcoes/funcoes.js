@@ -11,7 +11,6 @@ function carregaMenu(page) {
             document.getElementById('carregaConteudo').innerHTML = data;
         })
         .catch(error => console.error('Error na requisição:', error));
-
 }
 
 function ValidaCPF() {
@@ -25,25 +24,25 @@ function ValidaCPF() {
 }
 
 function fMasc(objeto, mascara) {
-    obj = objeto
-    masc = mascara
-    setTimeout("fMascEx()", 1)
+    obj = objeto;
+    masc = mascara;
+    setTimeout("fMascEx()", 1);
 }
 
 function fMascEx() {
-    obj.value = masc(obj.value)
+    obj.value = masc(obj.value);
 }
 
 function mCPF(cpf_usuario) {
-    cpf_usuario = cpf_usuario.replace(/\D/g, "")
-    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-    return cpf_usuario
+    cpf_usuario = cpf_usuario.replace(/\D/g, "");
+    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf_usuario = cpf_usuario.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    return cpf_usuario;
 }
 
 if (document.getElementById("cpf_usuario")) {
-    document.getElementById("cpf_usuario")
+    document.getElementById("cpf_usuario");
 }
 
 function sair() {
@@ -65,11 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function fecharModal(nomeModal) {
+    const modalElement = document.getElementById(nomeModal);
+    const ModalInstacia = new bootstrap.Modal(modalElement);
+    ModalInstacia.hide();
+}
 
 function abrirModalJsExcluir(id, inID, nomeModal, abrirModal = 'A', addEditDel, formulario) {
-    const formDados = document.getElementById(`${formulario}`)
+    const formDados = document.getElementById(`${formulario}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`));
 
-    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
     if (abrirModal === 'A') {
         ModalInstacia.show();
         const inputid = document.getElementById(`${inID}`);
@@ -83,37 +87,34 @@ function abrirModalJsExcluir(id, inID, nomeModal, abrirModal = 'A', addEditDel, 
             const form = event.target;
             const formData = new FormData(form);
 
-            formData.append('controle', `${addEditDel}`)
+            formData.append('controle', `${addEditDel}`);
             if (inID !== 'nao') {
-                formData.append('id', `${id}`)
+                formData.append('id', `${id}`);
             }
+
             fetch('excusuario.php', {
-                method: 'POST', body: formData,
+                method: 'POST',
+                body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    if (data.success) {
-                        location.reload();
-
-                    } else {
-                        location.reload();
-                    }
+                    console.log(data);
+                    ModalInstacia.hide();
+                    carregaMenu('listarUsuario');
                 })
                 .catch(error => {
-                    location.reload();
+                    ModalInstacia.hide();
+                    carregaMenu('listarUsuario');
                     console.error('Erro na requisição:', error);
                 });
+        };
 
-
-        }
         formDados.addEventListener('submit', submitHandler);
-
-
     } else {
-        location.reload();
-    }
+        ModalInstacia.hide();
 
+        carregaMenu('listarUsuario');
+    }
 }
 
 function abrirModalJsAlterar(id, inID, nomeModal, abrirModal = 'A', addEditDel, formulario, idNome, inNome, idCpf, inCpf) {
@@ -138,7 +139,7 @@ function abrirModalJsAlterar(id, inID, nomeModal, abrirModal = 'A', addEditDel, 
             inputId.value = id;
         }
 
-        const submitHandler = function (event) {
+        formDados.addEventListener('submit', function (event) {
             event.preventDefault();
 
             const formData = new FormData(formDados);
@@ -150,27 +151,34 @@ function abrirModalJsAlterar(id, inID, nomeModal, abrirModal = 'A', addEditDel, 
 
             fetch('alterarusuario.php', {
                 method: 'POST',
-                body: formData
+                body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        location.reload();
-                    }
+
+                    // Fechar o modal
+                    ModalInstacia.hide();
+
+                    // Carregar a página de listagem de usuários
+                    carregaMenu('listarUsuario');
                 })
                 .catch(error => {
-                    location.reload();
                     console.error('Erro na requisição:', error);
+
+                    // Fechar o modal
+                    ModalInstacia.hide();
+
+
+                    // Carregar a página de listagem de usuários
+                    carregaMenu('listarUsuario');
+
                 });
-        };
-
-        formDados.addEventListener('submit', submitHandler);
-
+        });
     } else {
-        location.reload();
+        ModalInstacia.hide();
+
+        carregaMenu('listarUsuario');
     }
 }
 
@@ -197,12 +205,11 @@ function abrirModalJsVerMais(id, inID, nomeModal, abrirModal = 'A') {
         };
 
         formDados.addEventListener('submit', submitHandler);
-
     } else {
-        location.reload();
+        carregaMenu('listarUsuario');
     }
 }
 
-
-
-
+function voltarParaListarUsuario() {
+    carregaMenu('listarUsuario');
+}
